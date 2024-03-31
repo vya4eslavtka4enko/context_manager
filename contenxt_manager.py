@@ -1,3 +1,4 @@
+# ________class methods_______
 class ManagedFile:
     def __init__(self,filename):
         print('init')
@@ -21,3 +22,15 @@ with ManagedFile('notes.txt') as file:
     print('do some stuff...')
     file.write('some todo...')
 
+
+# __________Library method______
+from contextlib import contextmanager
+
+@contextmanager
+def open_managed_file(filename):
+    f=open(filename,'w')
+    try:
+        yield f
+    finally:
+        f.close()
+        
